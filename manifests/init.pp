@@ -1,15 +1,20 @@
 # Class: gitssh
 # ===========================
-class gitssh {
-  package { 'git':
-    ensure => present,
+class gitssh(
+  $package_ensure = present,
+  $package_name   = 'git',
+  $purge_ssh_keys = true,
+  ) {
+  package { $package_name:
+    ensure => $package_ensure,
   }
 
   user { 'git':
-    ensure     => present,
-    shell      => '/usr/bin/git-shell',
-    require    => Package['git'],
-    managehome => true,
+    ensure         => present,
+    shell          => '/usr/bin/git-shell',
+    require        => Package[$package_name],
+    managehome     => true,
+    purge_ssh_keys => $purge_ssh_keys,
   }
 
   exec { '/bin/echo /usr/bin/git-shell >> /etc/shells':
