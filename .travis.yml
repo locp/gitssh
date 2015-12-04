@@ -4,7 +4,7 @@ bundler_args: --without development
 script:
 - bundle exec rake lint
 - bundle exec rake validate
-- bundle exec rake rspec --trace SPEC_OPTS='--format documentation'
+- bundle exec rake spec SPEC_OPTS='--format documentation'
 sudo: false
 matrix:
   fast_finish: true
