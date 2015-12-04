@@ -9,7 +9,9 @@ gem 'facter', '>= 1.7.0'
 gem 'rspec-puppet', :require => false
 
 group :system_tests do
+  gem 'coveralls',              :require => false
   gem 'metadata-json-lint',     :require => false
   gem 'puppet-blacksmith',      :require => false
+  gem 'rspec-puppet-utils',     :require => false
 end
 
