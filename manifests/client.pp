@@ -13,9 +13,10 @@ define gitssh::client(
   }
 
   ssh_authorized_key { $ssh_authorized_key_title:
-    ensure => $ensure,
-    user   => 'git',
-    type   => $type,
-    key    => $key
+    ensure  => $ensure,
+    user    => 'git',
+    type    => $type,
+    key     => $key,
+    require => Class['gitssh']
   }
 }
