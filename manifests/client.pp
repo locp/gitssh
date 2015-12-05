@@ -6,8 +6,6 @@ define gitssh::client(
   $ensure   = present,
   $type     = 'ssh-rsa',
   ) {
-  include stdlib
-
   ssh_authorized_key { "git:${clientid}":
     ensure => $ensure,
     user   => 'git',

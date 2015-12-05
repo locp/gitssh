@@ -1,12 +1,5 @@
 require 'spec_helper'
 describe 'gitssh::client' do
-  let(:pre_condition) { [
-    'define ssh_authorized_key($ensure,
-       $user,
-       $type,
-       $key   = nil,) {}',
-  ] }
-
   context 'Manage authorised SSH key' do
     let :params do
       {
