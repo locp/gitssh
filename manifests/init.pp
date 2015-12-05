@@ -21,9 +21,9 @@ class gitssh(
     ensure         => present,
     home           => $basedir,
     shell          => '/usr/bin/git-shell',
-    require        => Package[$package_name],
     managehome     => true,
     purge_ssh_keys => $purge_ssh_keys,
+    require        => Package[$package_name],
     before         => File[$reposdir]
   }
 
