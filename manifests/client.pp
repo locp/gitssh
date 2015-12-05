@@ -1,12 +1,18 @@
 # Define: gitssh::client
 # ===========================
 define gitssh::client(
-  $clientid,
-  $key,
+  $clientid = undef,
   $ensure   = present,
   $type     = 'ssh-rsa',
+  $key      = undef,
   ) {
-  ssh_authorized_key { "git:${clientid}":
+  if $clientid != undef {
+    $ssh_authorized_key_title = $clientid
+  } else {
+    $ssh_authorized_key_title = $title
+  }
+
+  ssh_authorized_key { $ssh_authorized_key_title:
     ensure => $ensure,
     user   => 'git',
     type   => $type,

@@ -1,10 +1,11 @@
 require 'spec_helper'
 describe 'gitssh::client' do
   context 'Manage authorised SSH key' do
+    let(:title) { 'nick@magpie.puppetlabs.lan' }
+
     let :params do
       {
-        :clientid => 'nick@magpie.puppetlabs.lan',
-        :key      => 'AAAAB...aQ=='
+        :key => 'AAAAB...aQ=='
       }
     end
 
