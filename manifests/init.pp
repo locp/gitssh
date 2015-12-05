@@ -10,6 +10,11 @@ class gitssh(
     ensure => $package_ensure,
   }
 
+  exec { '/bin/echo /usr/bin/git-shell >> /etc/shells':
+    unless => '/bin/grep -q \'^/usr/bin/git-shell$\' /etc/shells',
+    before => User['git']
+  }
+
   user { 'git':
     ensure         => present,
     home           => $basedir,
@@ -17,10 +22,15 @@ class gitssh(
     require        => Package[$package_name],
     managehome     => true,
     purge_ssh_keys => $purge_ssh_keys,
+    before         => File[$reposdir]
   }
 
-  exec { '/bin/echo /usr/bin/git-shell >> /etc/shells':
-    unless => '/bin/grep -q \'^/usr/bin/git-shell$\' /etc/shells',
-    before => User['git']
+  $reposdir = "${basedir}/repos"
+
+  file { $reposdir:
+    ensure => directory,
+    owner  => 'git',
+    group  => 'git',
+    mode   => '0700',
   }
 }
