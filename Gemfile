@@ -8,11 +8,11 @@ group :system_tests do
   gem 'coveralls',              :require => false
   gem 'puppet-blacksmith',      :require => false
   gem 'puppetlabs_spec_helper', :require => false
+  gem 'metadata-json-lint',     :require => false
+  gem 'puppet-lint',            :require => false
 end
 
 group :development do
-  gem 'metadata-json-lint',   :require => false
-  gem 'puppet-lint',          :require => false
   gem 'travis',               :require => false
   gem 'travis-lint',          :require => false
 end
