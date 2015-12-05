@@ -6,6 +6,8 @@ class gitssh(
   $package_name   = 'git',
   $purge_ssh_keys = true,
   ) {
+  $reposdir = "${basedir}/repos"
+
   package { $package_name:
     ensure => $package_ensure,
   }
@@ -24,8 +26,6 @@ class gitssh(
     purge_ssh_keys => $purge_ssh_keys,
     before         => File[$reposdir]
   }
-
-  $reposdir = "${basedir}/repos"
 
   file { $reposdir:
     ensure => directory,
