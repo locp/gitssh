@@ -1,29 +1,32 @@
 # Define: gitssh::repo
 # ===========================
 define gitssh::repo(
-  $repo_name   = undef,
-  $ensure      = present,
+  $ensure = present,
   ) {
-  require gitssh
+  include '::gitssh'
+
   $basedir = $::gitssh::basedir
+  $dirname = "${basedir}/repos/${title}.git"
 
-  if $repo_name != undef {
-    $dirname = "${basedir}/repos/${repo_name}.git"
+  if $ensure == present {
+    exec { "/usr/bin/mkdir ${dirname}":
+      unless  => "/usr/bin/test -d ${dirname}",
+      user    => 'git',
+      require => File["${basedir}/repos"],
+      notify  => Exec["create_repo ${title}"]
+    }
+
+    exec { "create_repo ${title}":
+      command     => '/usr/bin/git --bare init',
+      cwd         => $dirname,
+      refreshonly => true,
+      user        => 'git'
+    }
+  } elsif $ensure == absent {
+    file { $dirname:
+      ensure => absent,
+    }
   } else {
-    $dirname = "${basedir}/repos/${title}.git"
-  }
-
-  exec { "/usr/bin/mkdir ${dirname}":
-    unless  => "/usr/bin/test -d ${dirname}",
-    user    => 'git',
-    require => Class['gitssh'],
-    notify  => Exec['create_repo']
-  }
-
-  exec { 'create_repo':
-    command     => '/usr/bin/git --bare init',
-    cwd         => $dirname,
-    refreshonly => true,
-    user        => 'git'
+    fail("Unknow value '${ensure}' passed to ensure!")
   }
 }
