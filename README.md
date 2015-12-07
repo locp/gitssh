@@ -6,7 +6,6 @@
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with gitssh](#setup)
     * [What gitssh affects](#what-gitssh-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with gitssh](#beginning-with-gitssh)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -15,33 +14,35 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+A Puppet module to install a basic Git SSH server.  It also manages SSH client
+access and repositories.
+
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+This module installs the git package and configures a 'git' user with the
+`/usr/bin/git-shell` shell.
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+SSH clients can be configured using the `gitssh::client` definition and
+repositories can be added/removed using the `gitssh::repo` definition.
 
 ## Setup
 
 ### What gitssh affects
 
+* Adds **/usr/bin/git-shell** to **/etc/shells**.
+* By default, the following directory tree is created:
+
+  ```bash
+  /var/git
+  /var/git/repos
+  /var/git/.ssh
+  ```
+
 * A list of files, packages, services, or operations that the module will alter,
   impact, or execute on the system it's installed on.
 * This is a great place to stick any warnings.
 * Can be in list or paragraph form.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
 
 ### Beginning with gitssh
 
@@ -65,15 +66,9 @@ with things. (We are working on automating this section!)
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Currently only developed and tested on CentOS 7.
 
 ## Development
 
 Since your module is awesome, other users will want to play with it. Let them
 know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
