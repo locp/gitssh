@@ -17,6 +17,6 @@ define gitssh::client(
     user    => 'git',
     type    => $type,
     key     => $key,
-    require => Class['gitssh']
+    require => User['git']
   }
 }
