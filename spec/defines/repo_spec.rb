@@ -8,7 +8,7 @@ describe 'gitssh::repo' do
         'user' => 'git',
       })
 
-      should contain_exec('create_repo').with({
+      should contain_exec('create_repo foobar').with({
         'command'     => '/usr/bin/git --bare init',
         'cwd'         => '/var/git/repos/foobar.git',
         'refreshonly' => true,

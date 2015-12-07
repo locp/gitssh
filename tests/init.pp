@@ -9,4 +9,23 @@
 # Learn more about module testing here:
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-include gitssh
+include '::gitssh'
+
+gitssh::client { 'nick@magpie.puppetlabs.lan':
+  key => 'AAAAB...aQ==',
+}
+
+gitssh::client { 'fbl42':
+  key => 'AAAAB...Aq==',
+}
+
+gitssh::client { 'jbi72':
+  ensure => absent
+}
+
+gitssh::repo { 'foo': }
+gitssh::repo { 'bar': }
+
+gitssh::repo { 'deleteme':
+  ensure => absent
+}

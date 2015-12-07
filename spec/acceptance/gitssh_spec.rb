@@ -5,10 +5,23 @@ describe 'gitssh class' do
     include '::gitssh'
 
     gitssh::client { 'nick@magpie.puppetlabs.lan':
-      key => 'AAAAB...aQ=='
+      key => 'AAAAB...aQ==',
     }
 
-    gitssh::repo { 'foobar': }
+    gitssh::client { 'fbl42':
+      key => 'AAAAB...Aq==',
+    }
+
+    gitssh::client { 'jbi72':
+      ensure => absent
+    }
+
+    gitssh::repo { 'foo': }
+    gitssh::repo { 'bar': }
+
+    gitssh::repo { 'deleteme':
+      ensure => absent
+    }
   EOS
 
   describe 'Git SSH installation.' do
