@@ -39,18 +39,53 @@ repositories can be added/removed using the `gitssh::repo` definition.
   /var/git/.ssh
   ```
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
-
 ### Beginning with gitssh
 
-The very basic steps needed for a user to get the module up and running.
+As with most modules, the most basic way to use the module would be:
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+```puppet
+include '::gitssh'
+```
+
+gitssh::client { 'nick@magpie.puppetlabs.lan':
+  key => 'AAAAB...aQ==',
+}
+
+gitssh::client { 'fbl42':
+  key => 'AAAAB...Aq==',
+}
+
+gitssh::client { 'jbi72':
+  ensure => absent
+}
+
+gitssh::repo { 'foo': }
+gitssh::repo { 'bar': }
+
+gitssh::repo { 'deleteme':
+  ensure => absent
+}
+
+#### Hiera
+
+```YAML
+---
+gitssh::clients:
+  nick@magpie.puppetlabs.lan:
+    key: 'AAAAB...aQ=='
+  fbl42:
+    key: 'AAAAB...Aq=='
+  jbi72:
+    ensure: absent
+
+gitssh::repos:
+  foo:
+    ensure: present
+  bar:
+    ensure: present
+  deleteme:
+    ensure: absent
+```
 
 ## Usage
 
