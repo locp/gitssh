@@ -2,9 +2,11 @@
 # ===========================
 class gitssh(
   $basedir        = '/var/git',
+  $clients        = undef,
   $package_ensure = present,
   $package_name   = 'git',
   $purge_ssh_keys = true,
+  $repos          = undef
   ) {
   $reposdir = "${basedir}/repos"
 
@@ -32,5 +34,13 @@ class gitssh(
     owner  => 'git',
     group  => 'git',
     mode   => '0700',
+  }
+
+  if $clients != undef {
+    create_resources(gitssh::client, $clients)
+  }
+
+  if $repos != undef {
+    create_resources(gitssh::repo, $repos)
   }
 }
