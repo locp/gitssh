@@ -10,7 +10,7 @@ describe 'gitssh::client' do
     end
 
     it {
-      should contain_ssh_authorized_key('nick@magpie.puppetlabs.lan').with({
+      should contain_ssh_authorized_key('gitssh::client::nick@magpie.puppetlabs.lan').with({
         'user' => 'git',
         'type' => 'ssh-rsa',
         'key'  => 'AAAAB...aQ==',
