@@ -7,6 +7,7 @@
 3. [Setup - The basics of getting started with gitssh](#setup)
     * [What gitssh affects](#what-gitssh-affects)
     * [Beginning with gitssh](#beginning-with-gitssh)
+      * [Hiera](#hiera)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -47,6 +48,15 @@ As with most modules, the most basic way to use the module would be:
 include '::gitssh'
 ```
 
+The following code will:
+
+* Setup a Git SSH server with default settings
+* Create two clients/users (nick@magpie.puppetlabs.lan and fbl42)
+* Ensure that if a client jbi72 does not have access
+
+```puppet
+include '::gitssh'
+
 gitssh::client { 'nick@magpie.puppetlabs.lan':
   key => 'AAAAB...aQ==',
 }
@@ -58,6 +68,13 @@ gitssh::client { 'fbl42':
 gitssh::client { 'jbi72':
   ensure => absent
 }
+```
+
+The following snippet will create two repositories (foo and bar) and will
+ensure that any repository called deleteme is absent:
+
+```puppet
+include '::gitssh'
 
 gitssh::repo { 'foo': }
 gitssh::repo { 'bar': }
@@ -65,8 +82,11 @@ gitssh::repo { 'bar': }
 gitssh::repo { 'deleteme':
   ensure => absent
 }
+```
 
 #### Hiera
+
+The following Hiera code will reproduce the examples above:
 
 ```YAML
 ---
