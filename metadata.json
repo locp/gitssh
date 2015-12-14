@@ -1,14 +1,14 @@
 {
-  "name": "locp-gitssh",
-  "version": "0.1.0",
-  "author": "locp",
-  "summary": "A Puppet module to install a basic Git SSH server.",
-  "license": "Apache-2.0",
-  "source": "https://github.com/locp/gitssh",
-  "project_page": "https://github.com/locp/gitssh",
-  "issues_url": "https://github.com/locp/gitssh/issues",
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
-  ]
+	"name": "locp-gitssh",
+	"version": "0.1.0",
+	"author": "locp",
+	"summary": "A Puppet module to install a basic Git SSH server.",
+	"license": "Apache-2.0",
+	"source": "https://github.com/locp/gitssh",
+	"project_page": "https://github.com/locp/gitssh",
+	"issues_url": "https://github.com/locp/gitssh/issues",
+	"dependencies": [{
+		"name": "puppetlabs-stdlib",
+		"version_requirement": ">= 3.0.0 < 5.0.0"
+	}]
 }
-
