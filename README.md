@@ -36,7 +36,6 @@ repositories can be added/removed using the `gitssh::repo` definition.
 
   ```bash
   /var/git
-  /var/git/repos
   /var/git/.ssh
   ```
 
