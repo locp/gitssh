@@ -6,7 +6,7 @@ define gitssh::repo(
   include '::gitssh'
 
   $basedir = $::gitssh::basedir
-  $dirname = "${basedir}/repos/${title}.git"
+  $dirname = "${basedir}/${title}.git"
 
   if $ensure == present {
     exec { "/usr/bin/mkdir ${dirname}":

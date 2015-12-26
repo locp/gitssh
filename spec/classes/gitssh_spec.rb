@@ -1,6 +1,6 @@
 require 'spec_helper'
-describe 'gitssh' do
 
+describe 'gitssh' do
   context 'with defaults for all parameters' do
     it {
       should contain_class('gitssh').with({
@@ -26,15 +26,6 @@ describe 'gitssh' do
 
     it {
       should contain_exec('/bin/echo /usr/bin/git-shell >> /etc/shells')
-    }
-
-    it {
-      should contain_file('/var/git/repos').with({
-        'ensure' => 'directory',
-        'owner'  => 'git',
-        'group'  => 'git',
-        'mode'   => '0700'
-      })
     }
   end
 end

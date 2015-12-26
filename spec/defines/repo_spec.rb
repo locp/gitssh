@@ -4,13 +4,13 @@ describe 'gitssh::repo' do
     let(:title) { 'foobar' }
 
     it {
-      should contain_exec('/usr/bin/mkdir /var/git/repos/foobar.git').with({
+      should contain_exec('/usr/bin/mkdir /var/git/foobar.git').with({
         'user' => 'git',
       })
 
       should contain_exec('create_repo foobar').with({
         'command'     => '/usr/bin/git --bare init',
-        'cwd'         => '/var/git/repos/foobar.git',
+        'cwd'         => '/var/git/foobar.git',
         'refreshonly' => true,
         'user'        => 'git',
       })

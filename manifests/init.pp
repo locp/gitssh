@@ -8,10 +8,6 @@ class gitssh(
   $purge_ssh_keys = true,
   $repos          = []
   ) {
-  include stdlib
-
-  $reposdir = "${basedir}/repos"
-
   package { $package_name:
     ensure => $package_ensure,
   }
@@ -28,14 +24,6 @@ class gitssh(
     managehome     => true,
     purge_ssh_keys => $purge_ssh_keys,
     require        => Package[$package_name],
-    before         => File[$reposdir]
-  }
-
-  file { $reposdir:
-    ensure => directory,
-    owner  => 'git',
-    group  => 'git',
-    mode   => '0700',
   }
 
   if size($clients) > 0 {
