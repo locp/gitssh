@@ -7,8 +7,8 @@
 3. [Setup - The basics of getting started with gitssh](#setup)
     * [What gitssh affects](#what-gitssh-affects)
     * [Beginning with gitssh](#beginning-with-gitssh)
-      * [Hiera](#hiera)
 4. [Usage - Configuration options and additional functionality](#usage)
+    * [Hiera](#hiera)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
@@ -48,6 +48,8 @@ As with most modules, the most basic way to use the module would be:
 include '::gitssh'
 ```
 
+## Usage
+
 The following code will:
 
 * Setup a Git SSH server with default settings
@@ -84,7 +86,7 @@ gitssh::repo { 'deleteme':
 }
 ```
 
-#### Hiera
+### Hiera
 
 The following Hiera code will reproduce the examples above:
 
@@ -107,17 +109,24 @@ gitssh::repos:
     ensure: absent
 ```
 
-## Usage
-
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
-
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### Class gitssh
+
+#### Parameters
+
+##### `basedir`
+This is set as the home directory for the git user.
+Default value: '/var/git'
+
+##### `clients`
+An array of hashes that can be passed to the gitssh::client definition.
+Default value: []
+
+##### `package_ensure`
+Passed as the **ensure** parameter package for the **git** package.  Valid
+values are **present** or a specific version number.
+Default value: present
 
 ## Limitations
 
@@ -125,5 +134,7 @@ Currently only developed and tested on CentOS 7.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Contributions will be gratefully accepted.  Please go to the project page,
+fork the project, make your changes locally and then raise a pull request.
+Details on how to do this are available at
+https://guides.github.com/activities/contributing-to-open-source.
