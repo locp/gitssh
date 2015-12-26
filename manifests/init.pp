@@ -2,12 +2,14 @@
 # ===========================
 class gitssh(
   $basedir        = '/var/git',
-  $clients        = undef,
+  $clients        = [],
   $package_ensure = present,
   $package_name   = 'git',
   $purge_ssh_keys = true,
-  $repos          = undef
+  $repos          = []
   ) {
+  include stdlib
+
   $reposdir = "${basedir}/repos"
 
   package { $package_name:
@@ -36,11 +38,11 @@ class gitssh(
     mode   => '0700',
   }
 
-  if $clients != undef {
+  if size($clients) > 0 {
     create_resources(gitssh::client, $clients)
   }
 
-  if $repos != undef {
+  if size($repos) > 0 {
     create_resources(gitssh::repo, $repos)
   }
 }
