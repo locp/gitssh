@@ -12,7 +12,7 @@ define gitssh::repo(
     exec { "/usr/bin/mkdir ${dirname}":
       unless  => "/usr/bin/test -d ${dirname}",
       user    => 'git',
-      require => File["${basedir}/repos"],
+      require => Package[$::gitssh::package_name],
       notify  => Exec["create_repo ${title}"]
     }
 
