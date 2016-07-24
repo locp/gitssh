@@ -13,6 +13,7 @@ group :system_tests do
   gem 'puppet-blacksmith',      :require => false
   gem 'puppet-lint',            :require => false
   gem 'puppetlabs_spec_helper', :require => false
+  gem 'rspec_junit_formatter',  :require => false
   gem 'rspec-puppet',           :require => false
   gem 'rspec-puppet-utils',     :require => false
 end
@@ -20,4 +21,13 @@ end
 group :development do
   gem 'travis',               :require => false
   gem 'travis-lint',          :require => false
+end
+
+# rspec must be v2 for ruby 1.8.7
+if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
+  gem 'rspec', '~> 2.0'
+  gem 'rake', '~> 10.0'
+else
+  # rubocop requires ruby >= 1.9
+  gem 'rubocop'
 end
