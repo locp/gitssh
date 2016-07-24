@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe 'gitssh' do
+  let!(:stdlib_stubs) do
+    MockFunction.new('size') do |f|
+      f.stubbed.with([]).returns(0)
+
+    end
+  end
+
   context 'with defaults for all parameters' do
     it {
       should contain_class('gitssh').with({

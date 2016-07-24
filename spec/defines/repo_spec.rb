@@ -1,5 +1,12 @@
 require 'spec_helper'
 describe 'gitssh::repo' do
+  let!(:stdlib_stubs) do
+    MockFunction.new('size') do |f|
+      f.stubbed.with([]).returns(0)
+
+    end
+  end
+
   context 'Add a repo' do
     let(:title) { 'foobar' }
 
