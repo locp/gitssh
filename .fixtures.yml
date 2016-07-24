@@ -1,0 +1,4 @@
+---
+fixtures:
+  symlinks:
+    gitssh: "#{source_dir}"
