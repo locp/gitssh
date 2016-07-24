@@ -5,16 +5,14 @@ describe 'gitssh::client' do
 
     let :params do
       {
-        :key => 'AAAAB...aQ=='
+        key: 'AAAAB...aQ=='
       }
     end
 
-    it {
-      should contain_ssh_authorized_key('gitssh::client::nick@magpie.puppetlabs.lan').with({
-        'user' => 'git',
-        'type' => 'ssh-rsa',
-        'key'  => 'AAAAB...aQ==',
-      })
-    }
+    it do
+      should contain_ssh_authorized_key('gitssh::client::nick@magpie.puppetlabs.lan').with('user' => 'git',
+                                                                                           'type' => 'ssh-rsa',
+                                                                                           'key'  => 'AAAAB...aQ==')
+    end
   end
 end

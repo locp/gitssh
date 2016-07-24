@@ -33,5 +33,5 @@ task :test do
 end
 
 Blacksmith::RakeTask.new do |t|
-  t.tag_pattern = "%s" # Use a custom pattern with git tag. %s is replaced with the version number.
+  t.tag_pattern = '%s' # Use a custom pattern with git tag. %s is replaced with the version number.
 end
