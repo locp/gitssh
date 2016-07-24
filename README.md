@@ -129,7 +129,7 @@ Default value: present
 
 ## Limitations
 
-Currently only developed and tested on CentOS 7.
+Currently only developed and tested on CentOS and Debian 7.
 
 ## Development
 
