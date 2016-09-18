@@ -11,5 +11,6 @@ class gitssh::params {
     'RedHat': {
       $mkdir = '/usr/bin/mkdir'
     }
+    default: {}
   }
 }
