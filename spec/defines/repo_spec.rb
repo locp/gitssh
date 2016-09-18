@@ -6,11 +6,38 @@ describe 'gitssh::repo' do
     end
   end
 
-  context 'Add a repo' do
+  context 'Add a repo (Red Hat)' do
     let(:title) { 'foobar' }
+
+    let :facts do
+      {
+        osfamily: 'RedHat'
+      }
+    end
 
     it do
       should contain_exec('/usr/bin/mkdir /var/git/foobar.git')
+        .with('user' => 'git')
+
+      should contain_exec('create_repo foobar')
+        .with('command' => '/usr/bin/git --bare init',
+              'cwd'         => '/var/git/foobar.git',
+              'refreshonly' => true,
+              'user'        => 'git')
+    end
+  end
+
+  context 'Add a repo (Red Hat)' do
+    let(:title) { 'foobar' }
+
+    let :facts do
+      {
+        osfamily: 'Debian'
+      }
+    end
+
+    it do
+      should contain_exec('/bin/mkdir /var/git/foobar.git')
         .with('user' => 'git')
 
       should contain_exec('create_repo foobar')

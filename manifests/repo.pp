@@ -4,12 +4,13 @@ define gitssh::repo(
   $ensure = present,
   ) {
   include '::gitssh'
+  include '::gitssh::params'
 
   $basedir = $::gitssh::basedir
   $dirname = "${basedir}/${title}.git"
 
   if $ensure == present {
-    exec { "/usr/bin/mkdir ${dirname}":
+    exec { "${::gitssh::params::mkdir} ${dirname}":
       unless  => "/usr/bin/test -d ${dirname}",
       user    => 'git',
       require => Package[$::gitssh::package_name],
