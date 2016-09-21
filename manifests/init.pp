@@ -17,13 +17,21 @@ class gitssh(
     before => User['git']
   }
 
+  if versioncmp($::puppetversion,'3.6.0') >= 0 {
+    User {
+      purge_ssh_keys => $purge_ssh_keys,
+    }
+  } elsif $purge_ssh_keys {
+    warning('gitssh::purge_ssh_keys is ignored in Puppet < 3.6.0.')
+    warning('To disable this warning, set gitssh::purge_ssh_keys to false.')
+  }
+
   user { 'git':
-    ensure         => present,
-    home           => $basedir,
-    shell          => '/usr/bin/git-shell',
-    managehome     => true,
-    purge_ssh_keys => $purge_ssh_keys,
-    require        => Package[$package_name],
+    ensure     => present,
+    home       => $basedir,
+    shell      => '/usr/bin/git-shell',
+    managehome => true,
+    require    => Package[$package_name],
   }
 
   if size($clients) > 0 {
