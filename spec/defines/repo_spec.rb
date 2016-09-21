@@ -16,6 +16,10 @@ describe 'gitssh::repo' do
     end
 
     it do
+      should contain_gitssh__repo('foobar').with(
+        ensure: 'present'
+      )
+
       should contain_exec('/usr/bin/mkdir /var/git/foobar.git')
         .with('user' => 'git')
 
