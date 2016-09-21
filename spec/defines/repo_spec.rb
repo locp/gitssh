@@ -6,12 +6,15 @@ describe 'gitssh::repo' do
     end
   end
 
+  puppetversion = Gem.loaded_specs['puppet'].version
+
   context 'Add a repo (Red Hat)' do
     let(:title) { 'foobar' }
 
     let :facts do
       {
-        osfamily: 'RedHat'
+        osfamily: 'RedHat',
+        puppetversion: puppetversion.to_s
       }
     end
 
@@ -36,7 +39,8 @@ describe 'gitssh::repo' do
 
     let :facts do
       {
-        osfamily: 'Debian'
+        osfamily: 'Debian',
+        puppetversion: puppetversion.to_s
       }
     end
 

@@ -3,6 +3,14 @@ describe 'gitssh::client' do
   context 'Manage authorised SSH key' do
     let(:title) { 'nick@magpie.puppetlabs.lan' }
 
+    puppetversion = Gem.loaded_specs['puppet'].version
+
+    let :facts do
+      {
+        puppetversion: puppetversion.to_s
+      }
+    end
+
     let :params do
       {
         key: 'AAAAB...aQ=='
