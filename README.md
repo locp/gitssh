@@ -118,6 +118,22 @@ gitssh::repos:
 
 #### Defined type gitssh::client
 
+##### `ensure`
+If the SSH key is to be present in the git account.  Valid values are
+*present* and *absent*.
+Default value: **present**
+
+##### `type`
+The type of SSH key.  See
+[here](https://docs.puppet.com/puppet/latest/reference/types/ssh_authorized_key.html#ssh_authorized_key-attribute-type)
+for a list of valid values.
+Default value: 'ssh-rsa'
+
+##### `key`
+This value can be left as *undef* (the default) if `ensure` is set to
+*absent*.  Otherwise it should be the SSH key.
+Default value: *undef*
+
 #### Class gitssh
 
 ##### `basedir`
@@ -150,6 +166,10 @@ An array of hashes that can be passed to the `gitssh::repo` definition.
 Default value: []
 
 #### Defined type gitssh::repo
+
+##### `ensure`
+If the repository is to be *present* or *absent*.
+Default value: **present**
 
 ## Limitations
 
