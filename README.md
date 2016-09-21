@@ -161,3 +161,9 @@ Contributions will be gratefully accepted.  Please go to the project page,
 fork the project, make your changes locally and then raise a pull request.
 Details on how to do this are available at
 https://guides.github.com/activities/contributing-to-open-source.
+
+### Contributers
+
+| Release        | Issue/PR                                                                                                                    | Contributer                          |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------- | :------------------------------------|
+| 0.1.2          | [The module does not work on Puppet 3.4.3The module does not work on Puppet 3.4.3](https://github.com/locp/gitssh/issues/3) | [@nl0pvm](https://github.com/nl0pvm) |
