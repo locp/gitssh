@@ -16,6 +16,7 @@ machine:
   environment:
     PUPPET_GEM_VERSION: '~> 4.0'
     STRICT_VARIABLES: yes
+    BEAKER_destroy: no
   ruby:
     version: 2.1.6
   services: 
@@ -27,3 +28,4 @@ test:
     - bundle exec rake lint
     - bundle exec rake validate
     - bundle exec rake spec SPEC_OPTS="--format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/puppet.xml"
+    - bundle exec rake beaker

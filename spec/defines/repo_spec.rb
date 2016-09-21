@@ -6,16 +6,23 @@ describe 'gitssh::repo' do
     end
   end
 
+  puppetversion = Gem.loaded_specs['puppet'].version
+
   context 'Add a repo (Red Hat)' do
     let(:title) { 'foobar' }
 
     let :facts do
       {
-        osfamily: 'RedHat'
+        osfamily: 'RedHat',
+        puppetversion: puppetversion.to_s
       }
     end
 
     it do
+      should contain_gitssh__repo('foobar').with(
+        ensure: 'present'
+      )
+
       should contain_exec('/usr/bin/mkdir /var/git/foobar.git')
         .with('user' => 'git')
 
@@ -27,12 +34,13 @@ describe 'gitssh::repo' do
     end
   end
 
-  context 'Add a repo (Red Hat)' do
+  context 'Add a repo (Debian)' do
     let(:title) { 'foobar' }
 
     let :facts do
       {
-        osfamily: 'Debian'
+        osfamily: 'Debian',
+        puppetversion: puppetversion.to_s
       }
     end
 

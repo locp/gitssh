@@ -7,24 +7,25 @@ describe 'gitssh' do
     end
   end
 
-  context 'with defaults for all parameters' do
-    it do
-      should contain_class('gitssh').with('basedir' => '/var/git',
-                                          'package_ensure' => 'present',
-                                          'package_name'   => 'git',
-                                          'purge_ssh_keys' => 'true')
+  puppetversion = Gem.loaded_specs['puppet'].version
+
+  context "With defaults for all parameters (puppet-#{puppetversion})" do
+    let :facts do
+      {
+        puppetversion: puppetversion.to_s
+      }
     end
 
     it do
+      should contain_class('gitssh')
+        .with(
+          basedir: '/var/git',
+          package_ensure: 'present',
+          package_name: 'git',
+          purge_ssh_keys: 'true'
+        )
       should contain_package('git').with('ensure' => 'present')
-    end
-
-    it do
-      should contain_user('git').with('home' => '/var/git',
-                                      'purge_ssh_keys' => true)
-    end
-
-    it do
+      should contain_user('git').with('home' => '/var/git')
       should contain_exec('/bin/echo /usr/bin/git-shell >> /etc/shells')
     end
   end
