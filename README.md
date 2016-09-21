@@ -110,11 +110,11 @@ gitssh::repos:
 
 ## Reference
 
-### Parameters
+* [Defined type gitssh::client](#defined-type-gitsshclient)
+* [Class gitssh](#class-gitssh)
+* [Defined type gitssh::repo](#defined-type-gitsshrepo)
 
-* Defined type gitssh::client
-* Class gitssh
-* Defined type gitssh::repo
+### Parameters
 
 #### Defined type gitssh::client
 
