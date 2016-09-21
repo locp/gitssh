@@ -34,7 +34,7 @@ describe 'gitssh::repo' do
     end
   end
 
-  context 'Add a repo (Red Hat)' do
+  context 'Add a repo (Debian)' do
     let(:title) { 'foobar' }
 
     let :facts do
