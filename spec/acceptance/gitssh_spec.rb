@@ -27,6 +27,9 @@ describe 'gitssh class' do
   describe 'Git SSH installation.' do
     it 'should work with no errors' do
       apply_manifest(pre_req_install_pp, catch_failures: true)
+    end
+
+    it 'check code is idempotent' do
       expect(apply_manifest(pre_req_install_pp,
                             catch_failures: true).exit_code).to be_zero
     end
