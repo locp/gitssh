@@ -110,26 +110,50 @@ gitssh::repos:
 
 ## Reference
 
-### Class gitssh
+### Parameters
 
-#### Parameters
+* Defined type gitssh::client
+* Class gitssh
+* Defined type gitssh::repo
+
+#### Defined type gitssh::client
+
+#### Class gitssh
 
 ##### `basedir`
 This is set as the home directory for the git user.
 Default value: '/var/git'
 
 ##### `clients`
-An array of hashes that can be passed to the gitssh::client definition.
+An array of hashes that can be passed to the `gitssh::client` definition.
 Default value: []
 
 ##### `package_ensure`
-Passed as the **ensure** parameter package for the **git** package.  Valid
+Passed as the **ensure** attribute to the package resource.  Valid
 values are **present** or a specific version number.
-Default value: present
+Default value: **present**
+
+##### `package_name`
+Passed as the **name** attribute for the package resource for the git
+package.
+Default value: 'git'
+
+##### `purge_ssh_keys`
+Passed as an attribute for the user resource for git.  This will remove all
+SSH keys from the git user that are not controlled by Puppet.  This
+attribute has no effect on version of Puppet < 3.6.0 and will generate a
+warning unless set to **false**.
+Default value: **true**
+
+##### `repos`
+An array of hashes that can be passed to the `gitssh::repo` definition.
+Default value: []
+
+#### Defined type gitssh::repo
 
 ## Limitations
 
-Currently only developed and tested on CentOS and Debian 7.
+Currently only developed and tested on CentOS 7, Ubuntu 14.04 and Debian 7.
 
 ## Development
 
