@@ -10,6 +10,7 @@ dependencies:
         environment:
           PUPPET_GEM_VERSION: '~> 4.0'
           STRICT_VARIABLES: yes
+          BEAKER_destroy: no
   post:
     - rvm cleanup all
 machine: 
