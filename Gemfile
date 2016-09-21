@@ -26,6 +26,7 @@ group :system_tests do
   gem 'rspec_junit_formatter',  '0.2.2'
   gem 'rspec-puppet',           '<= 2.3.2'
   gem 'rspec-puppet-utils',     require: false
+  gem 'rubocop',                '<= 0.41.2'
   gem 'serverspec',             require: false
   gem 'specinfra',              '<= 2.59.0'
   gem 'spdx-licenses',          '<= 1.0.0'
@@ -41,7 +42,4 @@ end
 if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
   gem 'rspec', '~> 2.0'
   gem 'rake', '~> 10.0'
-else
-  # rubocop requires ruby >= 1.9
-  gem 'rubocop', '<= 0.41.2'
 end
