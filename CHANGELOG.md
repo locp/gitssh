@@ -1,5 +1,10 @@
 # Change Log for Puppet Module locp-gitssh
 
+##2016-09-21 - Release 0.1.3 ([diff](https://github.com/locp/gitssh/compare/0.1.2...0.1.3))
+
+* Fixed a typo in the README.
+* Clarified the licence.
+
 ##2016-09-21 - Release 0.1.2 ([diff](https://github.com/locp/gitssh/compare/0.1.1...0.1.2))
 
 * Fixed a fatal error when running a Puppet version < 3.6.0.

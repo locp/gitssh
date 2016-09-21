@@ -184,6 +184,6 @@ https://guides.github.com/activities/contributing-to-open-source.
 
 ### Contributers
 
-| Release        | Issue/PR                                                                                                                    | Contributer                          |
-| :------------- | :-------------------------------------------------------------------------------------------------------------------------- | :------------------------------------|
-| 0.1.2          | [The module does not work on Puppet 3.4.3The module does not work on Puppet 3.4.3](https://github.com/locp/gitssh/issues/3) | [@nl0pvm](https://github.com/nl0pvm) |
+| Release        | Issue/PR                                                                            | Contributer                          |
+| :------------- | :---------------------------------------------------------------------------------- | :------------------------------------|
+| 0.1.2          | [The module does not work on Puppet 3.4.3](https://github.com/locp/gitssh/issues/3) | [@nl0pvm](https://github.com/nl0pvm) |
